@@ -11,21 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ingredients', function (Blueprint $table) {
+        Schema::create('components', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->enum('type', ['ingredient', 'packaging']);
+            $table->string('name')->unique();
             $table->string('brand')->nullable();
             $table->text('description')->nullable();
             $table->string('url')->nullable();
             $table->integer('amount');
-            $table->string('unit');
-            $table->decimal('price', 10, 2);
+            $table->enum('unit', ['kg', 'gram']);
+            $table->bigInteger('price');
             $table->timestamps();
         });
 
-        Schema::create('ingredient-images', function (Blueprint $table) {
+        Schema::create('component_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ingredient_id')->references('id')->on('ingredients')->cascadeOnDelete();
+            $table->foreignId('component_id')->references('id')->on('components')->cascadeOnDelete();
             $table->string('name');
             $table->timestamps();
         });
@@ -36,7 +37,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ingredients');
-        Schema::dropIfExists('ingredient-images');
+        Schema::dropIfExists('components');
+        Schema::dropIfExists('component_images');
     }
 };
