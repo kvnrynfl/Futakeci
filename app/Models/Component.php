@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Component extends Model
 {
@@ -33,6 +33,6 @@ class Component extends Model
      */
     public function Images(): HasMany
     {
-        return $this->hasMany(ComponentImage::class, 'foreign_key', 'local_key');
+        return $this->hasMany(ComponentImage::class);
     }
 }

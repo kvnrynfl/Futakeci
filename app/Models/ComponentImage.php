@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ComponentImage extends Model
 {
@@ -27,6 +27,6 @@ class ComponentImage extends Model
      */
     public function Component(): BelongsTo
     {
-        return $this->belongsTo(Component::class, 'foreign_key', 'other_key');
+        return $this->belongsTo(Component::class);
     }
 }
