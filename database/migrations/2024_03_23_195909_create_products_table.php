@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->decimal('additional_cost', 10, 2)->nullable()->default(10000.00);
+            $table->string('name')->unique();
+            $table->bigInteger('additional_cost')->nullable()->default(10000);
             $table->integer('production_cost')->nullable()->default(50);
             $table->integer('profit_margin')->nullable()->default(20);
             $table->timestamps();
